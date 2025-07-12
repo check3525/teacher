@@ -5,6 +5,7 @@ import {
   Route,
   useNavigate,
   useLocation,
+  Navigate,
 } from 'react-router-dom';
 
 import chatIcon from './assets/chat.svg';
@@ -51,6 +52,9 @@ function MainLayout() {
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/help" element={<HelpPage />} />
+
+          {/* Добавим обработку несуществующих маршрутов */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
 
