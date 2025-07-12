@@ -1,9 +1,14 @@
-/* Сброс */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+html,
+body {
+  -webkit-tap-highlight-color: transparent; /* убирает блик при клике на мобильных */
+}
+
 
 @font-face {
   font-family: "TT";
@@ -77,6 +82,12 @@ body {
   color: #0C0C0C;
   cursor: pointer;
 }
+
+.menu-item-link {
+  text-decoration: none; /* убирает подчёркивание у ссылок */
+  color: inherit;        /* сохраняет цвет из .menu-label */
+}
+
 
 .menu-label {
   font-size: 12px;

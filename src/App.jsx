@@ -6,6 +6,7 @@ import {
   useNavigate,
   useLocation,
   Navigate,
+  Link,
 } from 'react-router-dom';
 
 import chatIcon from './assets/chat.svg';
@@ -59,33 +60,35 @@ function MainLayout() {
       </div>
 
       <div className={`bottom-menu ${isKeyboardVisible ? 'hidden' : ''}`}>
-        <MenuItem icon={chatIcon} label="Запросы" path="/chat" currentPath={currentPath} navigate={navigate} />
-        <MenuItem icon={historyIcon} label="История" path="/history" currentPath={currentPath} navigate={navigate} />
-        <MenuItem icon={homeIcon} label="Главная" path="/" currentPath={currentPath} navigate={navigate} />
-        <MenuItem icon={profileIcon} label="Профиль" path="/profile" currentPath={currentPath} navigate={navigate} />
-        <MenuItem icon={helpIcon} label="Помощь" path="/help" currentPath={currentPath} navigate={navigate} />
+        <MenuItem icon={chatIcon} label="Запросы" path="/chat" currentPath={currentPath} />
+        <MenuItem icon={historyIcon} label="История" path="/history" currentPath={currentPath}/>
+        <MenuItem icon={homeIcon} label="Главная" path="/" currentPath={currentPath}  />
+        <MenuItem icon={profileIcon} label="Профиль" path="/profile" currentPath={currentPath}  />
+        <MenuItem icon={helpIcon} label="Помощь" path="/help" currentPath={currentPath}  />
       </div>
     </div>
   );
 }
 
 
-function MenuItem({ icon, label, path, currentPath, navigate }) {
+function MenuItem({ icon, label, path, currentPath }) {
   const active = currentPath === path;
 
   return (
-    <div className="menu-item" onClick={() => navigate(path)}>
-      <div className={`menu-icon ${active ? 'active' : ''}`}>
-        <img
-          src={icon}
-          alt={label}
-          className={`icon-image ${active ? 'white-icon' : ''}`}
-        />
+    <Link to={path} className="menu-item-link">
+      <div className="menu-item">
+        <div className={`menu-icon ${active ? 'active' : ''}`}>
+          <img
+            src={icon}
+            alt={label}
+            className={`icon-image ${active ? 'white-icon' : ''}`}
+          />
+        </div>
+        <div className={`menu-label ${active ? 'active-label' : ''}`}>
+          {label}
+        </div>
       </div>
-      <div className={`menu-label ${active ? 'active-label' : ''}`}>
-        {label}
-      </div>
-    </div>
+    </Link>
   );
 }
 
