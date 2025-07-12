@@ -25,27 +25,13 @@ function App() {
 }
 
 function MainLayout() {
-  const [keyboardOffset, setKeyboardOffset] = useState(140);
-  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-
   useEffect(() => {
     // Инициализация Telegram WebApp
     if (window.Telegram?.WebApp) {
       window.Telegram.WebApp.ready();
       window.Telegram.WebApp.expand(); // Раскрытие на весь экран
     }
-
-    const viewport = window.visualViewport;
-    const handleResize = () => {
-      const offset = window.innerHeight - viewport.height;
-      setIsKeyboardVisible(offset > 100);
-      setKeyboardOffset(offset > 100 ? offset + 20 : 140);
-    };
-
-    viewport.addEventListener('resize', handleResize);
-    return () => viewport.removeEventListener('resize', handleResize);
   }, []);
 
 
@@ -55,7 +41,7 @@ function MainLayout() {
     <div className="app">
       <div className="page-content">
         <Routes>
-          <Route path="/" element={<HomePage keyboardOffset={keyboardOffset} />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/profile" element={<ProfilePage />} />
@@ -66,7 +52,7 @@ function MainLayout() {
         </Routes>
       </div>
 
-      <div className={`bottom-menu ${isKeyboardVisible ? 'hidden' : ''}`}>
+      <div className={`bottom-menu`}>
         <MenuItem icon={chatIcon} label="Запросы" path="/chat" currentPath={currentPath} />
         <MenuItem icon={historyIcon} label="История" path="/history" currentPath={currentPath}/>
         <MenuItem icon={homeIcon} label="Главная" path="/" currentPath={currentPath}  />
@@ -99,7 +85,7 @@ function MenuItem({ icon, label, path, currentPath }) {
   );
 }
 
-function HomePage({ keyboardOffset }) {
+function HomePage() {
   const [input, setInput] = useState('');
   const isInputFilled = input.trim().length > 0;
 
@@ -114,7 +100,7 @@ function HomePage({ keyboardOffset }) {
         />
       </div>
 
-      <div className="solve-task-button" style={{ bottom: `${keyboardOffset}px` }}>
+      <div className="solve-task-button">
         <button className={isInputFilled ? 'active' : ''}>Решить задачу</button>
       </div>
     </>

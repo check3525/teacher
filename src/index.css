@@ -70,7 +70,7 @@ body {
   justify-content: space-between;
   padding: 0 16px 26px;
   background-color: #fff;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .menu-item {
@@ -119,7 +119,7 @@ body {
 .icon-image {
   width: 24px;
   height: 24px;
-  transition: filter 0.3s;
+  transition: filter 0.2s;
 }
 
 .white-icon {
@@ -130,7 +130,7 @@ body {
   position: absolute;
   right: 14px;
   z-index: 100;
-  transition: bottom 0.3s ease;
+  bottom: 140px;
 }
 
 .solve-task-button button {
@@ -149,9 +149,3 @@ body {
 .solve-task-button button.active {
   background-color: #7E7BE5;
 }
-
-.bottom-menu.hidden {
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-
