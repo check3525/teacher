@@ -31,6 +31,12 @@ function MainLayout() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Инициализация Telegram WebApp
+    if (window.Telegram?.WebApp) {
+      window.Telegram.WebApp.ready();
+      window.Telegram.WebApp.expand(); // Раскрытие на весь экран
+    }
+
     const viewport = window.visualViewport;
     const handleResize = () => {
       const offset = window.innerHeight - viewport.height;
@@ -41,6 +47,7 @@ function MainLayout() {
     viewport.addEventListener('resize', handleResize);
     return () => viewport.removeEventListener('resize', handleResize);
   }, []);
+
 
   const currentPath = location.pathname;
 
