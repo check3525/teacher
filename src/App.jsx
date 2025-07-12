@@ -14,6 +14,8 @@ import historyIcon from './assets/history.svg';
 import homeIcon from './assets/home.svg';
 import profileIcon from './assets/profile.svg';
 import helpIcon from './assets/help.svg';
+import stone from "./stone.png"
+import plus from "./plus.svg"
 
 
 function App() {
@@ -100,9 +102,22 @@ function HomePage() {
         />
       </div>
 
-      <div className="solve-task-button">
-        <button className={isInputFilled ? 'active' : ''}>Решить задачу</button>
-      </div>
+<div className="balance-wrapper">
+  <div className="balance-top">
+    <span className="balance-label">Мой баланс</span>
+    <img src={plus}/>
+  </div>
+
+  <div className="bottom-action-row">
+    <div className="crystal-block">
+      <img src={stone} alt="crystal" className="crystal-icon" />
+      <span className="crystal-count">5</span>
+    </div>
+    <div className="solve-task-button-inline">
+      <button className={isInputFilled ? 'active' : ''}>Решить задачу</button>
+    </div>
+  </div>
+</div>
     </>
   );
 }

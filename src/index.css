@@ -9,7 +9,6 @@ body {
   -webkit-tap-highlight-color: transparent; /* убирает блик при клике на мобильных */
 }
 
-
 @font-face {
   font-family: "TT";
   src: url("./fonts/TTNorms-Medium.woff2") format("woff2");
@@ -21,6 +20,20 @@ body {
   src: url("./fonts/TTNorms-Regular.woff2") format("woff2");
   font-weight: 400;
 }
+
+@font-face {
+  font-family: "TT";
+  src: url("./fonts/TTNorms-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "TT";
+  src: url("./fonts/TTNorms-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+
+
 
 /* Основные стили */
 body {
@@ -42,13 +55,13 @@ body {
 }
 
 .textarea {
-    font-family: 'TT';
+  font-family: 'TT';
   font-weight: 500;
   width: 100%;
   font-size: 20px;
   color: #0C0C0C;
-  border: none;  
-  min-height: 200px; /* Можно использовать min-height для адаптации */
+  border: none;
+  min-height: 200px;
 }
 
 .textarea:focus {
@@ -61,6 +74,114 @@ body {
   font-weight: 500;
 }
 
+.balance-wrapper {
+  position: absolute;
+  bottom: 140px;
+  left: 0;
+  right: 0;
+  padding: 0 16px;
+  z-index: 10;
+}
+
+.balance-top {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* можно настроить отступ между "Мой баланс" и + */
+  margin-bottom: 10px;
+}
+.balance-label {
+  font-size: 18px;
+  font-weight: 500;
+  color: #4A427B;
+}
+
+.add-balance-button {
+  font-size: 22px;
+  font-weight: 500;
+  color: #4A427B;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Нижний блок с кристаллом и кнопкой */
+.bottom-action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.crystal-block {
+  display: flex;
+  align-items: center;
+  background-color: #F9DCDF;
+  padding: 14.5px 0px;
+  min-width: 122px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.crystal-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.crystal-count {
+  font-size: 24px;
+  font-weight: 700;
+  color: #4A427B;
+}
+
+.solve-task-button-inline {
+  margin-left: auto;
+}
+
+.solve-task-button-inline button {
+  padding: 18px 40px;
+  background-color: #B9BABA;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 18px;
+  font-family: 'TT';
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.solve-task-button-inline button.active {
+  background-color: #7E7BE5;
+}
+
+/* Старый solve-task-button (абсолютный, если вдруг где-то ещё используется) */
+.solve-task-button {
+  position: absolute;
+  right: 14px;
+  z-index: 100;
+  bottom: 140px;
+}
+
+.solve-task-button button {
+  padding: 18px 40px;
+  background-color: #B9BABA;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 18px;
+  font-family: 'TT';
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.solve-task-button button.active {
+  background-color: #7E7BE5;
+}
+
+/* Нижнее меню */
 .bottom-menu {
   position: fixed;
   bottom: 0;
@@ -84,10 +205,9 @@ body {
 }
 
 .menu-item-link {
-  text-decoration: none; /* убирает подчёркивание у ссылок */
-  color: inherit;        /* сохраняет цвет из .menu-label */
+  text-decoration: none;
+  color: inherit;
 }
-
 
 .menu-label {
   font-size: 12px;
@@ -124,28 +244,4 @@ body {
 
 .white-icon {
   filter: brightness(0) invert(1);
-}
-
-.solve-task-button {
-  position: absolute;
-  right: 14px;
-  z-index: 100;
-  bottom: 140px;
-}
-
-.solve-task-button button {
-  padding: 18px 40px;
-  background-color: #B9BABA; /* серый по умолчанию */
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font-size: 18px;
-  font-family: 'TT';
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.solve-task-button button.active {
-  background-color: #7E7BE5;
 }
