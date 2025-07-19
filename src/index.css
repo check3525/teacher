@@ -68,6 +68,7 @@ body {
   outline: none;
 }
 
+
 .textarea::placeholder {
   color: #B9BABA;
   font-size: 20px;
@@ -244,4 +245,264 @@ body {
 
 .white-icon {
   filter: brightness(0) invert(1);
+}
+
+.deleteAllChats {
+  color: #EB1480;
+  display: inline-block;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.history-scroll-container {
+  max-height: calc(100vh - 180px); /* или подгони под твой дизайн */
+  overflow-y: auto;
+  margin-top: 12px;
+  padding-right: 4px;
+}
+
+.historyElementBlock {
+  position: relative;
+  background-color: #EBEBFB;
+  margin: 18px 0;
+  padding: 10px 20px;
+  color: #0C0C0C;
+  font-weight: 400;
+  font-size: 20px;
+  border-radius: 15px;
+  line-height: 1.4;
+}
+
+.history-title {
+  max-width: 300px;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #0C0C0C;
+}
+
+.delete-btn:hover {
+  color: #EB1480;
+}
+
+
+
+
+
+    .profile-card {
+      background: linear-gradient(to right, #F7F9EA, #FBDDE2);
+      border-radius: 15px;
+      padding: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .user-name {
+      font-weight: 700;
+      margin-bottom: 2px;
+      font-size: 20px;
+      color: #4A427B;
+    }
+
+    .user-id {
+      font-size: 16px;
+      color: #4A427B;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    .balance-info {
+      text-align: right;
+    }
+
+    .balance-label {
+      margin-bottom: 2px;
+      font-size: 20px;
+      color: #4A427B;
+      font-weight: 700;
+    }
+
+    .balance-value {
+      font-size: 20px;
+      font-weight: 600;
+      color: #4A427B;
+      margin-top: 2px;
+    }
+
+
+
+
+
+
+
+
+
+    .chat-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 16px;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.balance-display {
+  background: #F9DCDF;
+  color: #4A427B;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.chat-content {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 64px;
+}
+
+.chat-bubble {
+  margin-bottom: 12px;
+  white-space: pre-wrap;
+
+  line-height: 1.4;
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-size: 18px;
+
+}
+
+.chat-bubble.user {
+  align-self: flex-end;
+  background-color: #EBEBFB;
+  color: #0C0C0C;
+  max-width: 70%; /* Ограничиваем ширину */
+  word-wrap: break-word; /* Переносим длинные слова */
+  overflow-wrap: break-word; /* Современный вариант */
+  margin-left: auto; /* Выравниваем по правому краю */
+}
+
+.chat-bubble.ai {
+  align-self: flex-start;
+  border: none;
+  color: #1a1a1a;
+  width: 100%;
+}
+
+.chat-input-container {
+  position: fixed; /* <-- фиксируем внизу экрана */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  padding: 0; /* убираем внутренние отступы */
+  background: white;
+  z-index: 999;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px 20px 0 0;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.chat-input {
+  flex: 1;
+  font-size: 18px;
+  color: #6E6868;
+  border: none;
+  outline: none;
+  padding: 16px;
+  border-radius: 20px;
+  resize: none;
+  overflow-y: auto; /* <-- ключевая строка */
+  line-height: 1.4;
+  max-height: 150px;
+  min-height: 60px;
+}
+
+.send-button {
+  padding: 0 20px;
+  font-size: 22px;
+  border: none;
+  background: none;
+  color: #7E7BE5;
+  cursor: pointer;
+}
+
+
+
+.typing-container {
+  display: flex;
+  align-items: center;
+}
+
+.company-icon {
+  width: 32px;  /* размер иконки */
+  height: 32px;  /* размер иконки */
+  margin-right: 8px;  /* отступ между иконкой и точками */
+}
+
+.typing-dots {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 24px;
+  gap: 8px;  /* расстояние между точками */
+  padding: 6px 0;
+}
+
+.typing-dots span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: blink 1.4s infinite ease-in-out;
+}
+
+.typing-dots .dot1 {
+  background-color: #7E7BE5;
+  animation-delay: 0s;
+}
+
+.typing-dots .dot2 {
+  background-color: #7E7BE599;
+  animation-delay: 0.2s;
+}
+
+.typing-dots .dot3 {
+  background-color: #7E7BE566;
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%, 80%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  40% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
 }
