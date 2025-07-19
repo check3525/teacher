@@ -354,11 +354,13 @@ body {
 
 
 
-    .chat-page {
+.chat-page {
   display: flex;
   flex-direction: column;
   height: 100vh;
   padding: 16px;
+  position: relative;
+  overflow: hidden;
 }
 
 .chat-header {
@@ -379,10 +381,13 @@ body {
   font-size: 16px;
 }
 
+
+
 .chat-content {
-  flex: 1;
+  flex-grow: 1;
   overflow-y: auto;
   margin-bottom: 64px;
+  padding-bottom: 20px;
 }
 
 .chat-bubble {
