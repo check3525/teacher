@@ -145,47 +145,8 @@ function ChatPage() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const chatContentRef = useRef(null);
-  const textareaRef = useRef(null);
+  const textareaRef = useRef(null); // <-- добавим ref
 
-  // Прокрутка вниз при появлении новых сообщений
-  useEffect(() => {
-    const el = chatContentRef.current;
-    if (!el) return;
-
-    const isAtBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 100;
-
-    if (isAtBottom) {
-      el.scrollTop = el.scrollHeight;
-    }
-  }, [messages]);
-
-  // Прокрутка вниз при фокусе
-  useEffect(() => {
-    const handleFocus = () => {
-      setTimeout(() => {
-        const el = chatContentRef.current;
-        if (el) {
-          el.scrollTop = el.scrollHeight;
-        }
-      }, 300);
-    };
-
-    const textarea = textareaRef.current;
-    textarea?.addEventListener('focus', handleFocus);
-
-    return () => {
-      textarea?.removeEventListener('focus', handleFocus);
-    };
-  }, []);
-
-  // Telegram WebApp стабильная высота (если доступна)
-  useEffect(() => {
-    if (window.Telegram?.WebApp?.setViewportStableHeight) {
-      window.Telegram.WebApp.setViewportStableHeight(true);
-    }
-  }, []);
-
-  // Начальное сообщение от пользователя
   useEffect(() => {
     const userMessage = location.state?.userMessage;
     if (userMessage) {
@@ -193,45 +154,52 @@ function ChatPage() {
         { from: 'user', text: userMessage },
         {
           from: 'ai',
-          text:
-            'Решим задачу по шагам:\n\n1. Маша съела 4 яблока.\n2. Андрей съел на 3 груши больше, чем Маша яблок:\n4+3=7 груш съел Андрей\n\nВсего фруктов:\n4+7=11 фруктов\n✅ Ответ: 11 фруктов было у детей.',
+          text: `Решим задачу по шагам:\n\n1. Маша съела 4 яблока.\n2. Андрей съел на 3 груши больше, чем Маша яблок:\n4+3=7 груш съел Андрей\n\nВсего фруктов:\n4+7=11 фруктов\n✅ Ответ: 11 фруктов было у детей.`,
         },
       ]);
     }
   }, [location.state]);
 
-  const handleSend = () => {
-    if (!input.trim()) return;
-
-    const userMessage = input.trim();
-    setMessages((prev) => [...prev, { from: 'user', text: userMessage }]);
-    setInput('');
-
-    const loadingMessageId = Date.now();
-    setMessages((prev) => [
-      ...prev,
-      { from: 'ai', text: '...', loading: true, id: loadingMessageId },
-    ]);
-
-    setTimeout(() => {
-      setMessages((prev) =>
-        prev.map((msg) =>
-          msg.id === loadingMessageId
-            ? {
-                ...msg,
-                loading: false,
-                text:
-                  'Решим задачу по шагам:\n\n1. Маша съела 4 яблока.\n2. Андрей съел на 3 груши больше…\n\n✅ Ответ: 11 фруктов.',
-              }
-            : msg
-        )
-      );
-    }, 2000);
-
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
+  useEffect(() => {
+    if (chatContentRef.current) {
+      chatContentRef.current.scrollTop = chatContentRef.current.scrollHeight;
     }
-  };
+  }, [messages]);
+
+const handleSend = () => {
+  if (!input.trim()) return;
+
+  const userMessage = input.trim();
+  setMessages((prev) => [...prev, { from: 'user', text: userMessage }]);
+  setInput('');
+
+  // Показ "AI typing"
+  const loadingMessageId = Date.now();
+  setMessages((prev) => [
+    ...prev,
+    { from: 'ai', text: '...', loading: true, id: loadingMessageId },
+  ]);
+
+  // Через 2 секунды заменяем "..." на настоящий ответ
+  setTimeout(() => {
+    setMessages((prev) =>
+      prev.map((msg) =>
+        msg.id === loadingMessageId
+          ? {
+              ...msg,
+              loading: false,
+              text:
+                `Решим задачу по шагам:\n\n1. Маша съела 4 яблока.\n2. Андрей съел на 3 груши больше…\n\n✅ Ответ: 11 фруктов.`,
+            }
+          : msg
+      )
+    );
+  }, 2000);
+
+  if (textareaRef.current) {
+    textareaRef.current.style.height = 'auto';
+  }
+};
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -242,6 +210,7 @@ function ChatPage() {
   };
 
   return (
+    <div className="chat-wrapper">
     <div className="chat-page">
       <div className="chat-header">
         <div className="balance-display">💎 1236</div>
@@ -254,10 +223,12 @@ function ChatPage() {
           </div>
         ))}
       </div>
+    </div>
+
 
       <div className="chat-input-container">
         <textarea
-          ref={textareaRef}
+          ref={textareaRef} // <-- ref подключаем сюда
           className="chat-input"
           value={input}
           onChange={handleInputChange}
